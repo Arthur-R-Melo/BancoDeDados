@@ -20,7 +20,7 @@ public class Conexao {
     private static String usuario = "aula";
     private static String senha = "aula";
     
-    public Connection obterConexao() {
+    public static Connection obterConexao() {
         try {
             Class.forName("org.postgresql.Driver");
             

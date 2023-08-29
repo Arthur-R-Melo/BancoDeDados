@@ -16,6 +16,11 @@ public class Aluno {
     private String telefone;
     private String email;
 
+    @Override
+    public String toString() {
+        return "Aluno{" + "nome=" + nome + ", cpf=" + cpf + ", ra=" + ra + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + '}';
+    }
+
     public String getNome() {
         return nome;
     }

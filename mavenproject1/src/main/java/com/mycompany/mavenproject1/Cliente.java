@@ -13,10 +13,20 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private String email;
+    private int id;
 
     @Override
     public String toString() {
-        return "Aluno{" + "nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + '}';
+        return "Cliente{" + "nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", id=" + id + '}';
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

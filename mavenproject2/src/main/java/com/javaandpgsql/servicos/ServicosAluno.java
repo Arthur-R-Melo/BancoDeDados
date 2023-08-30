@@ -32,8 +32,9 @@ public class ServicosAluno {
                 Cliente atual=new Cliente();
                 atual.setNome(resultado.getString("nome"));
                 atual.setEndereco(resultado.getString("endereco"));
-                atual.setTelefone(resultado.getString("telefone"));
+                atual.setTelefone(resultado.getString("numeroTelefone"));
                 atual.setEmail(resultado.getString("email"));
+                atual.setIdentificador(resultado.getInt("idetificador"));
                 retorno.add(atual);
                 System.out.println(atual);
             }
@@ -49,13 +50,13 @@ public class ServicosAluno {
     public void gravarAluno(Cliente dados){
         try {
             Connection c = Conexao.obeterConexao();
-            String sql="INSERT INTO arthur_ribeiro.CLIENTE(nome,email,endereco,telefone) "
+            String sql="INSERT INTO arthur_ribeiro.CLIENTE(nome,email,endereco,numeroTelefone) "
                     + " VALUES (?,?,?,?);";
             PreparedStatement insercao = c.prepareStatement(sql);
             insercao.setString(1, dados.getNome() );
             insercao.setString(2, dados.getEmail());
             insercao.setString(3,dados.getEndereco());
-            insercao.setString(4,dados.getTelefone());
+            insercao.setInt(4,Integer.parseInt(dados.getTelefone()));
             insercao.executeQuery();
             c.close();
         } catch (SQLException ex) {

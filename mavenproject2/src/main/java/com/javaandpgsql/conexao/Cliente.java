@@ -14,6 +14,15 @@ public class Cliente {
     private String endereco;
     private String email;
     private String telefone;
+    private int identificador;
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
 
     public String getNome() {
         return nome;

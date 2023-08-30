@@ -32,6 +32,7 @@ public class Servicos {
                 atual.setEndereco(resultado.getString("endereco"));
                 atual.setTelefone(resultado.getString("telefone"));
                 atual.setEmail(resultado.getString("email"));
+                atual.setId(resultado.getInt("identificador"));
                 retorno.add(atual);
             }
             c.close();

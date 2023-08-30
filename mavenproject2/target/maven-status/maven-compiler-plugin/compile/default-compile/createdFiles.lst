@@ -1,0 +1,8 @@
+com\javaandpgsql\conexao\Aluno.class
+com\javaandpgsql\telas\CadastroAluno.class
+com\javaandpgsql\telas\CadastroAluno$1.class
+com\javaandpgsql\telas\CadastroAluno$3.class
+com\javaandpgsql\servicos\ServicosAluno.class
+com\javaandpgsql\telas\CadastroAluno$2.class
+com\javaandpgsql\conexao\Conexao.class
+com\javaandpgsql\GravandoNoBanco.class

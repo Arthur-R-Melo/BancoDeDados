@@ -18,22 +18,20 @@ import java.util.logging.Logger;
  * @author 0068943
  */
 public class Servicos {
-    public List<Aluno> consultarAlunosGravados() {
-        List<Aluno> retorno = new ArrayList<>();
+    public List<Cliente> consultarAlunosGravados() {
+        List<Cliente> retorno = new ArrayList<>();
         
         try {
             Connection c = Conexao.obterConexao();
-            String sql = "SELECT * FROM janio.aluno";
+            String sql = "SELECT * FROM arthur_ribeiro.CLIENTE";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {                
-                Aluno atual = new Aluno();
-                atual.setCpf(resultado.getString("cpf"));
+                Cliente atual = new Cliente();
                 atual.setNome(resultado.getString("nome"));
                 atual.setEndereco(resultado.getString("endereco"));
                 atual.setTelefone(resultado.getString("telefone"));
                 atual.setEmail(resultado.getString("email"));
-                atual.setRa(resultado.getInt("ra"));
                 retorno.add(atual);
             }
             c.close();
@@ -43,10 +41,10 @@ public class Servicos {
         }
         return retorno;
     }
-    public void gravarAluno(Aluno dados) {
+    public void gravarAluno(Cliente dados) {
         try {
-            String sql = "INSERT INTO janio.ALUNO (nome, email, endereco, telefone, cpf) "
-                    + "VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO arthur_ribeiro.CLIENTE (nome, email, endereco, numeroTelefone) "
+                    + "VALUES (?, ?, ?, ?)";
             
             Connection c = Conexao.obterConexao();
             PreparedStatement instrucao = c.prepareStatement(sql);
@@ -54,7 +52,6 @@ public class Servicos {
             instrucao.setString(2, dados.getEmail());
             instrucao.setString(3, dados.getEndereco());
             instrucao.setString(4, dados.getTelefone());
-            instrucao.setString(5, dados.getCpf());
             
             c.close();
         } catch (SQLException ex) {

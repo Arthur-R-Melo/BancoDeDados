@@ -16,24 +16,19 @@ import java.util.logging.Logger;
  */
 public class Conexao {
     private static Connection ifConexoes;
-    private static String url = "jdbc.postgresql://10.90.24.56/aula";
-    private static String usuario = "aula";
-    private static String senha = "aula";
     
     public static Connection obterConexao() {
         try {
-            Class.forName("org.postgresql.Driver");
-            
-            ifConexoes = DriverManager.getConnection(url, usuario, senha);
-            
-            System.out.println("Deu certo");
-        } catch (ClassNotFoundException ex) {
-            System.err.println("Classe não encontrada"+ex.getMessage());
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            System.err.println("SQL ERROR"+ex.getMessage());
+            String url = "jdbc:postgresql://10.90.24.56:5432/aula";
+            String usuario = "aula";
+            String senha = "aula";
+
+            Connection con = DriverManager.getConnection(url, usuario, senha);
+            return con;
+        } catch (java.sql.SQLException ex) {
+            System.out.println("Erro ao conectar no banco: "+ex.getMessage());
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ifConexoes;
+        return null;
     }
 }

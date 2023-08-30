@@ -23,7 +23,7 @@ public class Servicos {
         
         try {
             Connection c = Conexao.obterConexao();
-            String sql = "SELECT * FROM arthur_ribeiro.CLIENTE";
+            String sql = "SELECT * FROM arthur_ribeiro.cliente";
             PreparedStatement consulta = c.prepareStatement(sql);
             ResultSet resultado = consulta.executeQuery();
             while (resultado.next()) {                
@@ -43,7 +43,7 @@ public class Servicos {
     }
     public void gravarAluno(Cliente dados) {
         try {
-            String sql = "INSERT INTO arthur_ribeiro.CLIENTE (nome, email, endereco, numeroTelefone) "
+            String sql = "INSERT INTO arthur_ribeiro.cliente (nome, email, endereco, numeroTelefone) "
                     + "VALUES (?, ?, ?, ?)";
             
             Connection c = Conexao.obterConexao();

@@ -167,6 +167,9 @@ public class NewJFrame extends javax.swing.JFrame {
         dados.setEndereco(txtEndereco.getText());
         dados.setNome(txtNome.getText());
         dados.setTelefone(txtTelefone.getText());
+        Servicos sa = new Servicos();
+        
+        sa.gravarAluno(dados);
     }//GEN-LAST:event_garvaBtnActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed

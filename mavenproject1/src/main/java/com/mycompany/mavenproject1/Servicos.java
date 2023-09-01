@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,9 +31,10 @@ public class Servicos {
                 Cliente atual = new Cliente();
                 atual.setNome(resultado.getString("nome"));
                 atual.setEndereco(resultado.getString("endereco"));
-                atual.setTelefone(resultado.getString("telefone"));
+                atual.setTelefone(resultado.getString("numeroTelefone")+"");
                 atual.setEmail(resultado.getString("email"));
-                atual.setId(resultado.getInt("identificador"));
+                atual.setId(resultado.getInt("identificardor"));
+                System.out.println(atual);
                 retorno.add(atual);
             }
             c.close();
@@ -55,6 +57,7 @@ public class Servicos {
             instrucao.setString(4, dados.getTelefone());
             
             c.close();
+            JOptionPane janela = new JOptionPane("Aluno cadastrado com sucesso!");
         } catch (SQLException ex) {
             System.err.println("SQL ERROR "+ex.getMessage());
             Logger.getLogger(Servicos.class.getName()).log(Level.SEVERE, null, ex);

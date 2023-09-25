@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class ServicosAluno {
     
-    public List<Cliente> consultarAlunosGravados(){
+    public List<Cliente> consultaCliente(){
         try {
             List<Cliente> retorno=new ArrayList<Cliente>();
             Connection c = Conexao.obeterConexao();
@@ -34,7 +34,7 @@ public class ServicosAluno {
                 atual.setEndereco(resultado.getString("endereco"));
                 atual.setTelefone(resultado.getString("numeroTelefone"));
                 atual.setEmail(resultado.getString("email"));
-                atual.setIdentificador(resultado.getInt("idetificador"));
+                atual.setIdentificador(resultado.getInt("identificardor"));
                 retorno.add(atual);
                 System.out.println(atual);
             }
@@ -63,5 +63,30 @@ public class ServicosAluno {
             Logger.getLogger(ServicosAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public Cliente consultaCliente(String identificador) {
+        try {
+            Connection c = Conexao.obeterConexao();
+            String sql="SELECT * FROM arthur_ribeiro.CLIENTE"
+                    + " WHERE identificardor = ?";
+            PreparedStatement consulta = c.prepareStatement(sql);
+            consulta.setInt(1, Integer.parseInt(identificador));
+            ResultSet rs = consulta.executeQuery();
+            
+            if(rs.next()) {
+                Cliente  cliente = new Cliente();
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEndereco(rs.getString("endereco"));
+                cliente.setTelefone(rs.getString("numeroTelefone"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setIdentificador(rs.getInt("identificardor"));
+                return cliente;
+            }else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+        
+    }
 }

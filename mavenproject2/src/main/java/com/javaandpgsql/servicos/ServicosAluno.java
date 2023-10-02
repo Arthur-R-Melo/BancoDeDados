@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -89,4 +90,29 @@ public class ServicosAluno {
         }
         
     }
-}
+    public List<Cliente> consultaCliente(Cliente filtro) {
+        try {
+            List<Cliente> retorno = new ArrayList<>();
+            Connection c = Conexao.obeterConexao();
+            String sql = "SELECT * FROM arthur_ribeiro.CLIENTE WHERE nome LIKE '" + filtro.getNome() + "%'";
+            Statement consulta = c.createStatement();
+            
+            ResultSet rs = consulta.executeQuery(sql);
+            
+            while (rs.next()) {                
+                Cliente  cliente = new Cliente();
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEndereco(rs.getString("endereco"));
+                cliente.setTelefone(rs.getString("numeroTelefone"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setIdentificador(rs.getInt("identificardor"));
+                
+                retorno.add(cliente);
+            }
+            return retorno;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+} 
